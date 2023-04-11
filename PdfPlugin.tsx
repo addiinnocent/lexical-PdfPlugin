@@ -70,3 +70,14 @@ function PdfPlugin(): JSX.Element | null {
 
     return null;
   }
+
+<button onClick={() => {
+     				editor.dispatchCommand(DOWNLOAD_COMMAND, async(file) => {
+                    const blob = await pdf(file).toBlob();
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = `${doc.title}.pdf`;
+                    link.click();
+                  });
+                }}
+>Download PDF</button>
